@@ -1,0 +1,14 @@
+{
+  "name": "cryptocurrency-prices",
+  "description": "Consulta a cotação de criptomoedas",
+  "version": "1.0.0",
+  "scripts": {
+    "deploy-staging": "serverless deploy function -f main --stage staging",
+    "deploy-production": "serverless deploy function -f main --stage production"
+  },
+  "devDependencies": {
+    "serverless": "^2.21.1",
+    "serverless-dotenv-plugin": "^3.10.0",
+    "serverless-python-requirements": "^5.1.1"
+  }
+}

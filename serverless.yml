@@ -1,0 +1,48 @@
+service: cryptocurrency-prices
+
+frameworkVersion: '2'
+disabledDeprecations: '*'
+
+provider:
+  name: aws
+  region: sa-east-1
+  runtime: python3.8
+  stackName: cryptocurrency-prices
+
+custom:
+  dotenv:
+    basePath: configs/
+    required:
+      file: true
+
+  pythonRequirements:
+    layer: true
+    dockerFile: Dockerfile
+    dockerizePip: true
+
+package:
+  exclude:
+    - doc/**
+    - LICENSE
+    - test/**
+    - Makefile
+    - README.md
+    - .coverage
+    - configs/**
+    - Dockerfile
+    - node_modules/**
+    - package-log.json
+
+functions:
+  main:
+    name: cryptocurrency-prices
+    tags:
+      region: sa-east-1
+    layers:
+      - Ref: PythonRequirementsLambdaLayer
+    handler: src.main.handler
+    description: Consulta a cotação de criptomoedas
+
+plugins:
+  - serverless-dotenv-plugin
+  - serverless-python-requirements

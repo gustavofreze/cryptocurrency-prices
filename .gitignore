@@ -1,0 +1,9 @@
+venv
+.idea
+/htmlcov/
+**.coverage
+**__pycache__
+.pytest_cache
+/node_modules/
+**.pytest_cache
+package-lock.json
